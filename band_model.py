@@ -1,11 +1,12 @@
 import random
 
+ensemble = {}
+
 musicians = {
     "Bassist": ["John", "Paul", "Ringo", "Axel", "Spike", "Dave"],
     "Guitarist": ["John", "Paul", "Ringo", "Axel", "Spike", "Dave"],
     "Drummer": ["John", "Paul", "Ringo", "Axel", "Spike", "Dave"]
     }
-
 
 class Musician(object):
     def __init__(self, sounds):
@@ -13,7 +14,8 @@ class Musician(object):
         
     def solo(self, length):
         for i in range(length):
-            print(self.sounds[{i}.format(len(self.sounds), end=" ")]
+            for i in range(len(self.sounds)):
+                print(self.sounds[i], end=", ")
 
 
 class Bassist(Musician):
@@ -29,10 +31,10 @@ class Guitarist(Musician):
         print("Be with you in a moment")
         print("Twoning, sproing, splang")
         
-
+        
 class Drummer(Musician):
     def __init__(self):
-        super().__init__(["Bump", "Cymbal", "Boom"])
+        super().__init__(["Thump", "Cymbal", "Wham"])
         
     def count(self):
         print("One, two, three, four!")
@@ -42,29 +44,32 @@ class Drummer(Musician):
         
 
 class Band(Musician):
-    ensemble = {}
     def __init__(self):
-        super().__init__(["The band music plays here."])
+        super().__init__(["Twang", "Thrumb", "Bling","Boink", "Bow", "Boom", 
+        "Thump", "Cymbal", "Wham"])
     
     def hire_musicians(self):
-        for instrumen_player in musicians.keys():
-            hired_musician = random.choice(musicians[instrumen_player])        
-            ensemble[instrument_player] = hired_musician
+        for player in musicians.keys():
+            hired_musician = random.choice(musicians[player])        
+            ensemble[player] = hired_musician
         return ensemble
 
     def fire_musicians(self):
-        ensemble = {}
+        ensemble.clear()
         return ensemble
             
     def perform(self):
         if "Drummer" in ensemble:
+            ensemble["Drummer"] = Drummer()
+            ensemble["Bassist"] = Bassist()
+            ensemble["Guitarist"] = Guitarist()
             ensemble["Drummer"].count()
-            Band.solo(6)
+            Band.solo(self,3)
         else:
-            print("How do you expect to practice when you didn't hire a\
-            drummer?")
+            print("How do you expect to practice when you fired the drummer?")
 
 
-Stones = Band()
-Stones.hire_musicians()
-Stones.perform()
+TheEgrets = Band()
+TheEgrets.hire_musicians()
+print(ensemble)
+TheEgrets.perform()
